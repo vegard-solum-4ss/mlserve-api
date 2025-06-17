@@ -2,7 +2,7 @@ import json
 
 from flask import Flask, url_for, jsonify
 
-from ._db import INDEX, MODELS, MODEL
+from _db import INDEX, MODELS, MODEL
 
 app = Flask(__name__)
 
@@ -13,18 +13,18 @@ def index():
 
 
 @app.route("/models")
-def models():
+def list_models():
     return jsonify(MODELS)
 
 
-@app.route("/model/<model_id>")
-def model(model_id):
+@app.route("/models/<model_id>")
+def get_model(model_id):
     return jsonify(MODEL[model_id])
 
 
-@app.route("/test")
-def test():
-    return url_for("index")
+# @app.route("/test")
+# def test():
+#     return url_for("index")
 
 
 if __name__ == "__main__":
