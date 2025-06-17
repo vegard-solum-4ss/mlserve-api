@@ -26,10 +26,11 @@ MODEL = {
     "1234": {
         "id": 1234,
         "name": "Model A",
-        # "prediction_url": base_url + "/models/1234/prediction",
+        "predictions_url": base_url + "/models/1234/predictions{/id}",
     },
     "5678": {
         "id": 5678,
         "name": "Model B",
+        "predictions_url": base_url + "/models/1234/predictions{/id}",
     }
 }

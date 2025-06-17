@@ -1,6 +1,4 @@
-import json
-
-from flask import Flask, url_for, jsonify
+from flask import Flask, jsonify, request
 
 from _db import INDEX, MODELS, MODEL
 
@@ -12,14 +10,24 @@ def index():
     return jsonify(INDEX)
 
 
-@app.route("/models")
-def list_models():
+@app.get("/models")
+def get_models():
+    """
+    Retrieve all models.
+    """
     return jsonify(MODELS)
 
 
-@app.route("/models/<model_id>")
+@app.get("/models/<model_id>")
 def get_model(model_id):
+    """Retrieve the details for a specific model."""
     return jsonify(MODEL[model_id])
+
+
+# @app.post("/models/<model_id>")
+# def post_model(model_id):
+#     """Create a new prediction for a specific model."""
+#     return jsonify(MODEL[model_id])
 
 
 # @app.route("/test")
