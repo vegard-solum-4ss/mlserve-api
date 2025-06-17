@@ -10,27 +10,27 @@ INDEX = {
 
 MODELS = [
     {
-        "id": 1234,
-        "url": base_url + "/models/1234",
+        "id": 1,
+        "url": base_url + "/models/1",
         "name": "Model A",
     },
     {
-        "id": 5678,
-        "url": base_url + "/models/5678",
+        "id": 2,
+        "url": base_url + "/models/2",
         "name": "Model B",
     }
 ]
 
 
 MODEL = {
-    "1234": {
-        "id": 1234,
+    "1": {
+        "id": 1,
         "name": "Model A",
-        "predictions_url": base_url + "/models/1234/predictions{/id}",
+        "predictions_url": base_url + "/models/1/predictions{/id}",
     },
-    "5678": {
+    "2": {
         "id": 5678,
         "name": "Model B",
-        "predictions_url": base_url + "/models/1234/predictions{/id}",
+        "predictions_url": base_url + "/models/2/predictions{/id}",
     }
 }
