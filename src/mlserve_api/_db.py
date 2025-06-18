@@ -21,3 +21,32 @@ MODELS = [
         "prediction_url": f"{base_url}/models/2/prediction",
     },
 ]
+
+
+def get_index():
+    """Retrieve the index."""
+    return INDEX
+
+
+def get_models():
+    """Retrieve the list of models."""
+    return MODELS
+
+
+def get_model(id_):
+    """Retrieve the details for a specific model."""
+    model = next((m for m in MODELS if m["id"] == int(id_)), None)
+    return model
+
+def add_model(data):
+    """Add a new model."""
+
+    new_id = max(model["id"] for model in MODELS) + 1 if MODELS else 1
+    new_model = {
+        "id": new_id,
+        "name": data.get("name"),
+        "url": f"{base_url}/models/{new_id}",
+        "prediction_url": f"{base_url}/models/{new_id}/prediction",
+    }
+    MODELS.append(new_model)
+    return new_model
