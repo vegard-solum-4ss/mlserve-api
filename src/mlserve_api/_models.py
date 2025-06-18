@@ -1,5 +1,8 @@
+import json
+
 import numpy as np
 from flask import Blueprint, abort, jsonify, request
+import waveresponse as wr
 
 from . import db
 
@@ -36,7 +39,19 @@ def prediction(model_id):
     if not model:
         abort(404, description="Model not found")
 
-    pred = int(np.random.default_rng().choice([0, 1], p=[0.9, 0.1]))
+    data = request.get_json()
+    wave_data = data["wave"]
+    heading = float(data["heading"])
+    degrees = bool(data["degrees"])
+
+    TYPE_MAP = {
+        "WaveSpectrum": wr.WaveSpectrum,
+        "WaveBinSpectrum": wr.WaveBinSpectrum,
+    }
+
+    wave = TYPE_MAP[wave_data["type"]](**wave_data["params"])
+
+    pred = int(np.random.default_rng().choice([0, 1], p=[0.8, 0.2]))
 
     response_dict = {
         "model_id": model_id,

@@ -20,7 +20,8 @@ classifiers = [
 dynamic = ["version"]
 dependencies = [
   "numpy",
-  "Flask"
+  "Flask",
+  "waveresponse"
 ]
 
 [tool.hatch.version]
