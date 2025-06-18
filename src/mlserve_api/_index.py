@@ -1,10 +1,10 @@
 from flask import Blueprint, jsonify
 
-from ._db import INDEX
+from . import db
 
 bp = Blueprint("index", __name__, url_prefix="/")
 
 
 @bp.route("/")
 def index():
-    return jsonify(INDEX)
+    return jsonify(db.get_index()), 200

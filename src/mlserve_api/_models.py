@@ -1,7 +1,7 @@
 import numpy as np
 from flask import Blueprint, abort, jsonify, request
 
-from . import _db as db
+from . import db
 
 bp = Blueprint("models", __name__, url_prefix="/models")
 
