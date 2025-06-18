@@ -19,17 +19,3 @@ MODELS = [
         "name": "Model B",
     },
 ]
-
-
-MODEL = {
-    "1": {
-        "id": 1,
-        "name": "Model A",
-        "predictions_url": base_url + "/models/1/predictions{/id}",
-    },
-    "2": {
-        "id": 5678,
-        "name": "Model B",
-        "predictions_url": base_url + "/models/2/predictions{/id}",
-    },
-}
