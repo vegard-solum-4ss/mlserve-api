@@ -12,7 +12,7 @@ bp = Blueprint("models", __name__, url_prefix="/models")
 
 @bp.get("/")
 def get_models():
-    return jsonify(db.get_models())
+    return jsonify(db.get_models()), 200
 
 
 @bp.post("/")
@@ -29,7 +29,7 @@ def post_models():
 @bp.get("/<int:model_id>")
 def get_model(model_id):
     """Retrieve the details for a specific model."""
-    return jsonify(db.get_model(model_id))
+    return jsonify(db.get_model(model_id)), 200
 
 
 @bp.post("/<int:model_id>/prediction")
