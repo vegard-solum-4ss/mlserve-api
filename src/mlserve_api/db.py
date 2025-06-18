@@ -1,4 +1,4 @@
-# _base_url = r"https://api.mlserve.com"
+# _base_url = r"https://api.4insight.io/mlserve"
 _base_url = r"http://127.0.0.1:8000"
 
 
@@ -23,23 +23,23 @@ _MODELS = [
 ]
 
 
-def get_index():
+def get_index() -> dict:
     """Retrieve the index."""
     return _INDEX
 
 
-def get_models():
+def get_models() -> list[dict]:
     """Retrieve the list of models."""
     return _MODELS
 
 
-def get_model(id_):
+def get_model(id_) -> dict | None:
     """Retrieve the details for a specific model."""
     model = next((m for m in _MODELS if m["id"] == int(id_)), None)
     return model
 
 
-def add_model(data):
+def add_model(data: dict) -> dict:
     """Add a new model."""
 
     new_id = max(model["id"] for model in _MODELS) + 1 if _MODELS else 1
