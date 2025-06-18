@@ -1,10 +1,9 @@
 import numpy as np
-from flask import Blueprint, jsonify, request, abort
+from flask import Blueprint, abort, jsonify, request
 
-from ._db import base_url, MODELS
+from ._db import MODELS, base_url
 
-
-bp = Blueprint('models', __name__, url_prefix='/models')
+bp = Blueprint("models", __name__, url_prefix="/models")
 
 
 @bp.get("/")
