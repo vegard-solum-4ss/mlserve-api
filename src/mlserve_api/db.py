@@ -1,4 +1,4 @@
-# _base_url = r"https://api.4insight.io/mlserve"
+# _base_url = r"https://api.4insight.io/v1/mlserve"
 _base_url = r"http://127.0.0.1:8000"
 
 
