@@ -12,12 +12,12 @@ MODELS = [
         "id": 1,
         "url": f"{base_url}/models/1",
         "name": "Model A",
-        "predictions_url": f"{base_url}/models/1/predictions",
+        "predictions_url": f"{base_url}/models/1/prediction",
     },
     {
         "id": 2,
         "url": f"{base_url}/models/2",
         "name": "Model B",
-        "predictions_url": f"{base_url}/models/2/predictions",
+        "predictions_url": f"{base_url}/models/2/prediction",
     },
 ]

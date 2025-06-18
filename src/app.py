@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, abort
+import numpy as np
 
-from _db import base_url, INDEX, MODELS, MODEL
+from _db import base_url, INDEX, MODELS
 
 app = Flask(__name__)
 
@@ -32,22 +33,28 @@ def post_models():
     return jsonify(new_model), 201
 
 
-@app.get("/models/<model_id>")
-def get_model(model_id):
+@app.get("/models/<int:model_id>")
+def get_models_id(model_id):
     """Retrieve the details for a specific model."""
     model = next((m for m in MODELS if m["id"] == int(model_id)), None)
     return jsonify(model)
 
 
-# @app.post("/models/<model_id>")
-# def post_model(model_id):
-#     """Create a new prediction for a specific model."""
-#     return jsonify(MODEL[model_id])
+@app.post("/models/<int:model_id>/prediction")
+def prediction(model_id):
+    """Predict operability using a specific ML model."""
+    model = next((m for m in MODELS if m["id"] == model_id), None)
+    if not model:
+        abort(404, description="Model not found")
 
+    pred = int(np.random.default_rng().choice([0, 1], p=[0.9, 0.1]))
 
-# @app.route("/test")
-# def test():
-#     return url_for("index")
+    response_dict = {
+        "model_id": model_id,
+        "prediction": pred,
+    }
+
+    return jsonify(response_dict), 200
 
 
 if __name__ == "__main__":
