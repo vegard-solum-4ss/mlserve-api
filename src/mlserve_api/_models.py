@@ -35,14 +35,18 @@ def get_model(model_id):
 def prediction(model_id):
     """Predict operability using a specific ML model."""
     model = db.get_model(model_id)
+    payload = request.get_json()
 
     if not model:
         abort(404, description="Model not found")
+    if "wave" not in payload or "heading" not in payload or "degrees" not in payload:
+        abort(400, description="Wave, heading, and degrees are required")
+    if "params" not in payload["wave"] or "type" not in payload["wave"]:
+        abort(400, description="Wave data must include 'type' and 'params'")
 
-    data = request.get_json()
-    wave_data = data["wave"]
-    heading = float(data["heading"])
-    degrees = bool(data["degrees"])
+    wave_data = payload["wave"]
+    heading = float(payload["heading"])
+    degrees = bool(payload["degrees"])
 
     TYPE_MAP = {
         "WaveSpectrum": wr.WaveSpectrum,
