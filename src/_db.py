@@ -2,7 +2,6 @@
 base_url = r"http://127.0.0.1:8000"
 
 
-
 INDEX = {
     "models_url": base_url + r"/models{/id}",
 }
@@ -18,7 +17,7 @@ MODELS = [
         "id": 2,
         "url": base_url + "/models/2",
         "name": "Model B",
-    }
+    },
 ]
 
 
@@ -32,5 +31,5 @@ MODEL = {
         "id": 5678,
         "name": "Model B",
         "predictions_url": base_url + "/models/2/predictions{/id}",
-    }
+    },
 }
