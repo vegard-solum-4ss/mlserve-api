@@ -1,8 +1,5 @@
-import json
-
 import numpy as np
 from flask import Blueprint, abort, jsonify, request
-import waveresponse as wr
 
 from . import db
 from ._utils import wave_from_dict
@@ -22,7 +19,7 @@ def post_models():
     if "name" not in data:
         abort(400, description="Name is required")
 
-    new_model = db.add_model(data)
+    new_model = db.new_model(data)
     return jsonify(new_model), 201
 
 

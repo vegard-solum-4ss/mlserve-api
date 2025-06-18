@@ -39,7 +39,7 @@ def get_model(id_) -> dict | None:
     return model
 
 
-def add_model(data: dict) -> dict:
+def new_model(data: dict) -> dict:
     """Add a new model."""
 
     new_id = max(model["id"] for model in _MODELS) + 1 if _MODELS else 1
