@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mlserve_api"
+authors = [
+  { name="4Subsea", email="python@4subsea.com" },
+]
+description = "ML Serve REST API"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dynamic = ["version"]
+dependencies = [
+  "numpy",
+  "Flask"
+]
+
+[tool.hatch.version]
+path = "src/mlserve_api/__about__.py"
