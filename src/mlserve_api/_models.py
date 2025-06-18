@@ -5,6 +5,7 @@ from flask import Blueprint, abort, jsonify, request
 import waveresponse as wr
 
 from . import db
+from ._utils import wave_from_dict
 
 bp = Blueprint("models", __name__, url_prefix="/models")
 
@@ -40,26 +41,24 @@ def prediction(model_id):
     if not model:
         abort(404, description="Model not found")
     if "wave" not in payload or "heading" not in payload or "degrees" not in payload:
-        abort(400, description="Wave, heading, and degrees are required")
+        abort(400, description="Wave, heading, and degrees are required.")
     if "params" not in payload["wave"] or "type" not in payload["wave"]:
-        abort(400, description="Wave data must include 'type' and 'params'")
+        abort(400, description="Wave data must include 'type' and 'params'.")
 
-    wave_data = payload["wave"]
+    wave = wave_from_dict(payload["wave"])
     heading = float(payload["heading"])
     degrees = bool(payload["degrees"])
-
-    TYPE_MAP = {
-        "WaveSpectrum": wr.WaveSpectrum,
-        "WaveBinSpectrum": wr.WaveBinSpectrum,
-    }
-
-    wave = TYPE_MAP[wave_data["type"]](**wave_data["params"])
 
     pred = int(np.random.default_rng().choice([0, 1], p=[0.8, 0.2]))
 
     response_dict = {
-        "model_id": model_id,
+        "model_url": model["url"],
         "prediction": pred,
+        "wave": {
+            "hs": wave.hs,
+            "tp": wave.tp,
+            "dirp_deg": wave.dirp(degrees=True),
+        },
     }
 
     return jsonify(response_dict), 200
