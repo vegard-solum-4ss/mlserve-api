@@ -27,7 +27,8 @@ def post_models():
     new_model = {
         "id": new_id,
         "name": data["name"],
-        "url": base_url + f"/models/{new_id}",
+        "url": f"{base_url}/models/{new_id}",
+        "prediction_url": f"{base_url}/models/{new_id}/prediction",
     }
     MODELS.append(new_model)
     return jsonify(new_model), 201
