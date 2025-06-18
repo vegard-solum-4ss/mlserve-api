@@ -35,7 +35,7 @@ def post_models():
 
 
 @app.get("/models/<int:model_id>")
-def get_models_id(model_id):
+def get_model(model_id):
     """Retrieve the details for a specific model."""
     model = next((m for m in MODELS if m["id"] == int(model_id)), None)
     return jsonify(model)
